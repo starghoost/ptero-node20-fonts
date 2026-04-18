@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
     fonts-noto-color-emoji \
     && rm -rf /var/lib/apt/lists/*
 
+COPY ./fonts /usr/share/fonts/custom
+
 RUN fc-cache -f -v
 
 LABEL org.opencontainers.image.source="https://github.com/starghoost/ptero-node20-fonts"
