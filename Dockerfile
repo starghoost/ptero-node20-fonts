@@ -13,6 +13,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN fc-cache -f -v
 
-LABEL org.opencontainers.image.source="https://github.com/TU_USUARIO_GITHUB/ptero-node20-fonts"
+LABEL org.opencontainers.image.source="https://github.com/starghoost/ptero-node20-fonts"
 
 USER container
