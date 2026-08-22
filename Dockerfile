@@ -1,8 +1,10 @@
-FROM ghcr.io/parkervcp/yolks:nodejs_20
+FROM ghcr.io/ptero-eggs/yolks:nodejs_24
 
 USER root
 
-RUN apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     fontconfig \
     fonts-dejavu \
     fonts-liberation \
@@ -13,8 +15,12 @@ RUN apt-get update && apt-get install -y \
 
 COPY ./fonts /usr/share/fonts/custom
 
-RUN fc-cache -f -v
+RUN fc-cache -f \
+    && node --version | grep -Eq '^v24\.' \
+    && fc-match "Segoe UI" | grep -qi "segoeui"
 
-LABEL org.opencontainers.image.source="https://github.com/starghoost/ptero-node20-fonts"
+LABEL org.opencontainers.image.source="https://github.com/starghoost/ptero-node20-fonts" \
+      org.opencontainers.image.title="Odyssey Node.js 24 with fonts" \
+      org.opencontainers.image.description="Pterodactyl Node.js 24 runtime with Segoe UI, Noto, DejaVu and Liberation fonts"
 
 USER container
